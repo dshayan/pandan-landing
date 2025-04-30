@@ -86,6 +86,16 @@
             position: fixed;
         }
     </style>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VY6P5CHTR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5VY6P5CHTR');
+    </script>
 </head>
 <body class="font-vazir bg-gradient-subtle text-dark overflow-hidden flex">
     <!-- Floating Circles -->
@@ -290,7 +300,7 @@
                                                                 animateOutroFeatures();
                                                             }, 50);
                                                         }, 500);
-                                                    }, 8000); // Fixed 8 second viewing time after typing completes
+                                                    }, 8000);
                                                 }
                                             };
                                             typeNextChar();
