@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>پندان</title>
+    <meta name="description" content="دوست هوشمند، آشنا با کارشناس‌ها، محافظ حریم شخصی">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/8X7Cc9p/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5664d2',
+                        secondary: '#38b6ff',
+                        accent: '#5fd38d',
+                        dark: '#333745',
+                        light: '#8f96a3',
+                        userbg: '#edf0ff',
+                        botbg: '#ecf5fd',
+                        background: '#f5f7fa',
+                    },
+                    fontFamily: {
+                        vazir: ['Vazirmatn', 'Tahoma', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out forwards',
+                        'pulse': 'pulse 1.5s ease-in-out infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-delay-1': 'float 10s ease-in-out 1s infinite',
+                        'float-delay-2': 'float 9s ease-in-out 2s infinite',
+                        'float-delay-3': 'float 11s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            'from': { 
+                                opacity: '0',
+                                transform: 'translateY(20px)'
+                            },
+                            'to': { 
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            },
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: 0.4 },
+                            '50%': { opacity: 1 },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(0px, 0px)' },
+                            '25%': { transform: 'translate(10px, -10px)' },
+                            '50%': { transform: 'translate(-5px, 5px)' },
+                            '75%': { transform: 'translate(-10px, -7px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                @apply bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text;
+            }
+            
+            .rtl-list li {
+                @apply relative pr-7;
+            }
+            
+            .rtl-list li::before {
+                content: '✓';
+                @apply absolute right-0 text-accent font-bold;
+            }
+
+            .bg-gradient-subtle {
+                @apply bg-gradient-to-br from-[#f0f4f8] to-[#e2eaf2];
+            }
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+        }
+    </style>
+</head>
+<body class="font-vazir bg-gradient-subtle text-dark overflow-hidden flex">
+    <!-- Floating Circles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-[15%] left-[20%] w-60 h-60 rounded-full bg-primary/20 blur-[60px] animate-float"></div>
+        <div class="absolute bottom-[10%] right-[15%] w-72 h-72 rounded-full bg-secondary/20 blur-[70px] animate-float-delay-1"></div>
+        <div class="absolute top-[60%] left-[10%] w-48 h-48 rounded-full bg-accent/20 blur-[50px] animate-float-delay-2"></div>
+        <div class="absolute top-[5%] right-[25%] w-56 h-56 rounded-full bg-[#FF9966]/20 blur-[55px] animate-float-delay-3"></div>
+    </div>
+    
+    <div class="w-full max-w-7xl mx-auto flex justify-center items-center relative z-10">
+        <!-- Mobile Phone Demo -->
+        <div class="flex items-center justify-center relative p-2 md:p-4">
+            <!-- Phone Mockup -->
+            <div class="w-[min(280px,94vw)] h-[min(580px,90vh)] md:w-[340px] md:h-[690px] bg-black rounded-[40px] p-[10px] relative shadow-2xl z-10 transform-gpu" id="phone-mockup">
+                <div class="w-full h-full bg-white rounded-[30px] overflow-hidden relative">
+                    <!-- Logo Intro Screen -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-white z-30" id="logo-intro">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center text-white font-black text-2xl mb-3 shadow-lg">پ</div>
+                        <h2 class="text-xl font-black text-gradient mb-2">پندان</h2>
+                        <div class="flex space-x-reverse space-x-1.5 mt-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse delay-300"></div>
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse delay-150"></div>
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Screen -->
+                    <div class="h-full w-full bg-gray-50 relative p-3 overflow-auto opacity-0" id="chat-screen">
+                        <div class="flex justify-center items-center mb-4 mt-2">
+                            <div class="w-6 h-6 bg-gradient-to-r from-[#0088cc] to-[#0099ff] rounded-full flex items-center justify-center text-white font-black text-xs shadow-md opacity-0 transition-opacity duration-500" id="telegram-logo">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.05-.2-.06-.06-.17-.04-.25-.02-.11.02-1.84 1.17-5.21 3.42-.49.33-.94.5-1.35.48-.44-.01-1.29-.25-1.92-.46-.78-.26-1.39-.4-1.34-.85.03-.22.32-.45.86-.68 3.39-1.47 5.66-2.45 6.81-2.92 3.24-1.35 3.92-1.58 4.36-1.59.1 0 .32.02.46.12.13.09.17.2.19.29.02.09.01.21.01.31z"/>
+                                </svg>
+                            </div>
+                            <div class="mx-2 text-gray-400 font-medium text-sm opacity-0 transition-opacity duration-500" id="plus-sign">+</div>
+                            <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md opacity-0 transition-opacity duration-500" id="chat-logo">پ</div>
+                        </div>
+                        <div class="chat-bubble-container flex flex-col space-y-2 h-full w-full pb-1">
+                            <!-- Chat Bubbles with sequential appearance -->
+                            <div class="self-start max-w-[60%] rounded-3xl p-2 bg-userbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-1">
+                                <div class="text-xs leading-relaxed">
+                                    <p>کامپیوترم روشن نمی‌شه</p>
+                                </div>
+                            </div>
+                            
+                            <div class="self-end max-w-[80%] rounded-3xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-2">
+                                <div class="text-xs leading-relaxed">
+                                    <p>اوه! اول از همه، مطمئن شو که کابل برق به کامپیوتر و پریز وصله. اگه وصل بود و باز هم روشن نشد، ممکنه مشکل از پاور، مادربرد یا قطعات دیگه باشه.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="self-start max-w-[60%] rounded-3xl p-2 bg-userbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-3">
+                                <div class="text-xs leading-relaxed">
+                                    <p>کابلش وصله.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="self-end max-w-[80%] rounded-3xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-4">
+                                <div class="text-xs leading-relaxed">
+                                    <p>خب، مطمئن شو که دکمه پاور رو درست فشار میدی و چراغی روشن میشه یا نه.</p>
+                                </div>
+                            </div>
+
+                            <div class="self-end max-w-[80%] rounded-2xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-5">
+                                <div class="text-xs leading-relaxed">
+                                    <p>می‌تونی این سؤال رو برای کارشناس کامپیوتر بفرستی. من خلاصه‌ی ماجرا رو به‌طور ناشناس بهش می‌گم.</p>
+                                    
+                                    <div class="mt-3 bg-primary text-white px-3 py-1.5 rounded-full text-center text-sm font-bold min-w-[140px] opacity-0 transition-opacity duration-300" id="send-button">
+                                        بفرست برای کارشناس
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outro Screen -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-white z-30 opacity-0 hidden" id="outro-screen">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center text-white font-black text-2xl mb-3 shadow-lg">پ</div>
+                        <h2 class="text-xl font-black text-gradient mb-4">پندان</h2>
+                        <div class="flex flex-col items-center space-y-3 mb-10">
+                            <div class="opacity-0 transition-opacity duration-500" id="feature-1">دوست هوشمند</div>
+                            <div class="opacity-0 transition-opacity duration-500" id="feature-2">آشنا با کارشناس‌ها</div>
+                            <div class="opacity-0 transition-opacity duration-500" id="feature-3">محافظ حریم شخصی</div>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4 opacity-0 transition-opacity duration-500" id="outro-buttons">
+                            <button id="info-button" class="border border-primary/70 text-primary text-sm font-bold py-1.5 px-5 rounded-full transition-all duration-300 min-w-[160px]">
+                                اطلاعات بیشتر
+                            </button>
+                            <a href="https://t.me/PandanIRBot" class="bg-primary text-white text-sm font-bold py-1.5 px-5 rounded-full shadow-md transition-all duration-300 min-w-[160px] text-center">
+                                پیام در تلگرام
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Message Screen -->
+                    <div class="absolute inset-0 bg-gray-50 flex flex-col p-3 z-40 hidden opacity-0" id="info-screen">
+                        <div class="flex justify-center mb-4 mt-2">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg">پ</div>
+                        </div>
+                        <div class="chat-bubble-container flex flex-col space-y-2 w-full">
+                            <div class="self-start max-w-[70%] rounded-3xl p-2 bg-blue-50 text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="info-bubble">
+                                <div class="text-xs leading-relaxed whitespace-pre-line" id="info-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const logoIntro = document.getElementById('logo-intro');
+            const chatScreen = document.getElementById('chat-screen');
+            const outroScreen = document.getElementById('outro-screen');
+            const infoButton = document.getElementById('info-button');
+            const infoScreen = document.getElementById('info-screen');
+            
+            // Default transition
+            const defaultTransition = 'opacity 0.5s ease';
+            
+            // Info button functionality
+            if (infoButton) {
+                const infoText = `✨ پندان، مثل یه دوست باسواد جواب هر سؤال یا درخواستی رو با هوش مصنوعی می‌ده. براساس موضوع سؤال یا درخواست، گاهی پیشنهاد می‌کنه به کارشناس باتجربه وصل بشی. اگه بخوای، پیامت رو به‌طور ناشناس برای کارشناس می‌فرسته و جواب رو بهت برمی‌گردونه.
+
+🧠 پندان فعلن در زمینه‌های کامپیوتر،‌ حقوق، پزشکی و سفر کارشناسِ داوطلب داره.`;
+                
+                infoButton.addEventListener('click', () => {
+                    // Hide outro screen
+                    outroScreen.style.transition = defaultTransition;
+                    outroScreen.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        outroScreen.style.display = 'none';
+                        
+                        // Show info screen
+                        infoScreen.style.display = 'flex';
+                        const infoTextElement = document.getElementById('info-text');
+                        infoTextElement.textContent = ''; // Clear text
+                        
+                        setTimeout(() => {
+                            infoScreen.style.transition = defaultTransition;
+                            infoScreen.style.opacity = '1';
+                            
+                            // Start typing the info text
+                            setTimeout(() => {
+                                const infoBubble = document.getElementById('info-bubble');
+                                const infoLogo = document.querySelector('#info-screen .w-10.h-10');
+                                
+                                // Animate logo first
+                                infoLogo.style.opacity = '0';
+                                infoLogo.style.transition = defaultTransition;
+                                setTimeout(() => {
+                                    infoLogo.style.opacity = '1';
+                                    
+                                    // Then animate the bubble
+                                    setTimeout(() => {
+                                        infoBubble.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                                        infoBubble.style.opacity = '1';
+                                        infoBubble.style.transform = 'translateY(0)';
+                                        
+                                        setTimeout(() => {
+                                            let i = 0;
+                                            const typeNextChar = () => {
+                                                if (i < infoText.length) {
+                                                    infoTextElement.textContent += infoText.charAt(i);
+                                                    i++;
+                                                    setTimeout(typeNextChar, 20);
+                                                }
+                                            };
+                                            typeNextChar();
+                                        }, 300);
+                                    }, 300);
+                                }, 100);
+                            }, 300);
+                            
+                            // After the text has had time to type (and additional viewing time), return to outro screen
+                            setTimeout(() => {
+                                // Hide info screen
+                                infoScreen.style.transition = defaultTransition;
+                                infoScreen.style.opacity = '0';
+                                
+                                const infoBubble = document.getElementById('info-bubble');
+                                infoBubble.style.opacity = '0';
+                                infoBubble.style.transform = 'translateY(8px)';
+                                
+                                const infoLogo = document.querySelector('#info-screen .w-10.h-10');
+                                if (infoLogo) {
+                                    infoLogo.style.opacity = '0';
+                                }
+                                
+                                setTimeout(() => {
+                                    infoScreen.style.display = 'none';
+                                    infoTextElement.textContent = ''; // Clear text
+                                    
+                                    // Show outro screen again
+                                    outroScreen.style.display = 'flex';
+                                    setTimeout(() => {
+                                        outroScreen.style.transition = defaultTransition;
+                                        outroScreen.style.opacity = '1';
+                                        
+                                        // Animate features one by one
+                                        animateOutroFeatures();
+                                    }, 50);
+                                }, 500);
+                            }, infoText.length * 20 + 5000); // Wait for typing to complete + 5 seconds viewing time
+                        }, 50);
+                    }, 500);
+                });
+            }
+            
+            // Show logo for 2 seconds then fade out
+            setTimeout(() => {
+                logoIntro.style.transition = defaultTransition;
+                logoIntro.style.opacity = '0';
+                
+                // After logo fades out, show chat screen and start conversation
+                setTimeout(() => {
+                    logoIntro.style.display = 'none';
+                    chatScreen.style.transition = defaultTransition;
+                    chatScreen.style.opacity = '1';
+                    
+                    // Start the conversation animation
+                    setTimeout(() => {
+                        // First show the logos and plus sign
+                        const telegramLogo = document.getElementById('telegram-logo');
+                        const plusSign = document.getElementById('plus-sign');
+                        const chatLogo = document.getElementById('chat-logo');
+                        
+                        if (telegramLogo && plusSign && chatLogo) {
+                            telegramLogo.style.opacity = '1';
+                            plusSign.style.opacity = '1';
+                            chatLogo.style.opacity = '1';
+                        }
+                        
+                        // Then start the conversation after a short delay
+                        setTimeout(() => {
+                            animateConversation(() => {
+                                // This callback will be called after the conversation ends
+                                setTimeout(() => {
+                                    // Fade out chat screen
+                                    chatScreen.style.transition = defaultTransition;
+                                    chatScreen.style.opacity = '0';
+                                    
+                                    // After chat fades out, show outro screen
+                                    setTimeout(() => {
+                                        chatScreen.style.display = 'none';
+                                        outroScreen.style.display = 'flex';
+                                        outroScreen.style.transition = defaultTransition;
+                                        setTimeout(() => {
+                                            outroScreen.style.opacity = '1';
+                                            
+                                            // Animate features one by one
+                                            animateOutroFeatures();
+                                        }, 50);
+                                    }, 800);
+                                }, 3000); // Wait 3 seconds after conversation ends
+                            });
+                        }, 500);
+                    }, 500);
+                }, 800);
+            }, 2000);
+            
+            // Function to animate outro features one by one
+            const animateOutroFeatures = () => {
+                const feature1 = document.getElementById('feature-1');
+                const feature2 = document.getElementById('feature-2');
+                const feature3 = document.getElementById('feature-3');
+                const outroButtons = document.getElementById('outro-buttons');
+                
+                setTimeout(() => {
+                    feature1.style.opacity = '1';
+                    setTimeout(() => {
+                        feature2.style.opacity = '1';
+                        setTimeout(() => {
+                            feature3.style.opacity = '1';
+                            setTimeout(() => {
+                                outroButtons.style.opacity = '1';
+                            }, 800);
+                        }, 800);
+                    }, 800);
+                }, 500);
+            };
+            
+            // Sequential conversation animation with completion callback
+            const animateConversation = (onComplete) => {
+                const bubbles = document.querySelectorAll('[id^="bubble-"]');
+                const bubbleTransition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                // Function to animate a single bubble and its text
+                const animateBubble = (index) => {
+                    if (index >= bubbles.length) {
+                        // All bubbles have been animated, call the completion callback
+                        if (typeof onComplete === 'function') {
+                            setTimeout(onComplete, 2000);
+                        }
+                        return;
+                    }
+                    
+                    const bubble = bubbles[index];
+                    
+                    // Show the bubble with a fade in animation
+                    setTimeout(() => {
+                        bubble.style.transition = bubbleTransition;
+                        bubble.style.opacity = '1';
+                        bubble.style.transform = 'translateY(0)';
+                        
+                        // Start typing animation after bubble appears
+                        const textElement = bubble.querySelector('p');
+                        if (textElement) {
+                            const text = textElement.textContent;
+                            textElement.textContent = '';
+                            
+                            // Start typing after a short delay
+                            setTimeout(() => {
+                                let i = 0;
+                                
+                                const typeNextChar = () => {
+                                    if (i < text.length) {
+                                        textElement.textContent += text.charAt(i);
+                                        i++;
+                                        setTimeout(typeNextChar, 20);
+                                    } else {
+                                        // Text typing is complete
+                                        
+                                        // If this is the last bubble (bubble-5), show the send button
+                                        if (bubble.id === 'bubble-5') {
+                                            const sendButton = document.getElementById('send-button');
+                                            if (sendButton) {
+                                                setTimeout(() => {
+                                                    sendButton.style.opacity = '1';
+                                                }, 300);
+                                            }
+                                        }
+                                        
+                                        // Wait a moment before showing next bubble
+                                        setTimeout(() => {
+                                            animateBubble(index + 1);
+                                        }, 700);
+                                    }
+                                };
+                                
+                                typeNextChar();
+                            }, 300);
+                        } else {
+                            // No text to type, move to the next bubble
+                            setTimeout(() => {
+                                animateBubble(index + 1);
+                            }, 700);
+                        }
+                    }, 500);
+                };
+                
+                // Start the animation with the first bubble
+                animateBubble(0);
+            };
+        });
+    </script>
+</body>
+</html>
