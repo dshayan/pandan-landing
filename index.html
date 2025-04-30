@@ -260,6 +260,37 @@
                                                     requestAnimationFrame(() => {
                                                         setTimeout(typeNextChar, randomDelay);
                                                     });
+                                                } else {
+                                                    // Typing is complete, now wait 8 seconds before transitioning back
+                                                    setTimeout(() => {
+                                                        // Hide info screen
+                                                        infoScreen.style.transition = defaultTransition;
+                                                        infoScreen.style.opacity = '0';
+                                                        
+                                                        const infoBubble = document.getElementById('info-bubble');
+                                                        infoBubble.style.opacity = '0';
+                                                        infoBubble.style.transform = 'translateY(8px)';
+                                                        
+                                                        const infoLogo = document.querySelector('#info-screen .w-10.h-10');
+                                                        if (infoLogo) {
+                                                            infoLogo.style.opacity = '0';
+                                                        }
+                                                        
+                                                        setTimeout(() => {
+                                                            infoScreen.style.display = 'none';
+                                                            infoTextElement.textContent = ''; // Clear text
+                                                            
+                                                            // Show outro screen again
+                                                            outroScreen.style.display = 'flex';
+                                                            setTimeout(() => {
+                                                                outroScreen.style.transition = defaultTransition;
+                                                                outroScreen.style.opacity = '1';
+                                                                
+                                                                // Animate features one by one
+                                                                animateOutroFeatures();
+                                                            }, 50);
+                                                        }, 500);
+                                                    }, 8000); // Fixed 8 second viewing time after typing completes
                                                 }
                                             };
                                             typeNextChar();
@@ -267,37 +298,6 @@
                                     }, 300);
                                 }, 100);
                             }, 300);
-                            
-                            // After the text has had time to type (and additional viewing time), return to outro screen
-                            setTimeout(() => {
-                                // Hide info screen
-                                infoScreen.style.transition = defaultTransition;
-                                infoScreen.style.opacity = '0';
-                                
-                                const infoBubble = document.getElementById('info-bubble');
-                                infoBubble.style.opacity = '0';
-                                infoBubble.style.transform = 'translateY(8px)';
-                                
-                                const infoLogo = document.querySelector('#info-screen .w-10.h-10');
-                                if (infoLogo) {
-                                    infoLogo.style.opacity = '0';
-                                }
-                                
-                                setTimeout(() => {
-                                    infoScreen.style.display = 'none';
-                                    infoTextElement.textContent = ''; // Clear text
-                                    
-                                    // Show outro screen again
-                                    outroScreen.style.display = 'flex';
-                                    setTimeout(() => {
-                                        outroScreen.style.transition = defaultTransition;
-                                        outroScreen.style.opacity = '1';
-                                        
-                                        // Animate features one by one
-                                        animateOutroFeatures();
-                                    }, 50);
-                                }, 500);
-                            }, infoText.length * 20 + 5000); // Wait for typing to complete + 5 seconds viewing time
                         }, 50);
                     }, 500);
                 });
