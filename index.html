@@ -154,7 +154,7 @@
                                 <div class="text-xs leading-relaxed">
                                     <p>می‌تونی این سؤال رو برای کارشناس کامپیوتر بفرستی. من خلاصه‌ی ماجرا رو به‌طور ناشناس بهش می‌گم.</p>
                                     
-                                    <div class="mt-3 bg-primary text-white px-3 py-1.5 rounded-full text-center text-sm font-bold min-w-[140px] opacity-0 transition-opacity duration-300" id="send-button">
+                                    <div class="mt-3 bg-primary text-white px-3 py-1.5 rounded-full text-center text-sm font-bold min-w-[140px] opacity-0 transition-opacity duration-300 absolute transform scale-0 origin-top" id="send-button">
                                         بفرست برای کارشناس
                                     </div>
                                 </div>
@@ -419,6 +419,8 @@
                                             if (sendButton) {
                                                 setTimeout(() => {
                                                     sendButton.style.opacity = '1';
+                                                    sendButton.style.transform = 'scale(1)';
+                                                    sendButton.style.position = 'relative';
                                                 }, 300);
                                             }
                                         }
