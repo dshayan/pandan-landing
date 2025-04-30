@@ -255,7 +255,11 @@
                                                 if (i < infoText.length) {
                                                     infoTextElement.textContent += infoText.charAt(i);
                                                     i++;
-                                                    setTimeout(typeNextChar, 20);
+                                                    // Add slight randomness to typing speed for more natural feel
+                                                    const randomDelay = Math.floor(Math.random() * 10) + 15; // 15-25ms
+                                                    requestAnimationFrame(() => {
+                                                        setTimeout(typeNextChar, randomDelay);
+                                                    });
                                                 }
                                             };
                                             typeNextChar();
@@ -409,7 +413,11 @@
                                     if (i < text.length) {
                                         textElement.textContent += text.charAt(i);
                                         i++;
-                                        setTimeout(typeNextChar, 20);
+                                        // Add slight randomness to typing speed for more natural feel
+                                        const randomDelay = Math.floor(Math.random() * 10) + 15; // 15-25ms
+                                        requestAnimationFrame(() => {
+                                            setTimeout(typeNextChar, randomDelay);
+                                        });
                                     } else {
                                         // Text typing is complete
                                         
