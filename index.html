@@ -266,7 +266,7 @@
                                                     infoTextElement.textContent += infoText.charAt(i);
                                                     i++;
                                                     // Add slight randomness to typing speed for more natural feel
-                                                    const randomDelay = Math.floor(Math.random() * 10) + 15; // 15-25ms
+                                                    const randomDelay = Math.floor(Math.random() * 5) + 7; // 7-12ms (2x faster)
                                                     requestAnimationFrame(() => {
                                                         setTimeout(typeNextChar, randomDelay);
                                                     });
@@ -424,7 +424,7 @@
                                         textElement.textContent += text.charAt(i);
                                         i++;
                                         // Add slight randomness to typing speed for more natural feel
-                                        const randomDelay = Math.floor(Math.random() * 10) + 15; // 15-25ms
+                                        const randomDelay = Math.floor(Math.random() * 5) + 7; // 7-12ms (2x faster)
                                         requestAnimationFrame(() => {
                                             setTimeout(typeNextChar, randomDelay);
                                         });
