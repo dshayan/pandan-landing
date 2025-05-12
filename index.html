@@ -271,7 +271,7 @@
                                                         setTimeout(typeNextChar, randomDelay);
                                                     });
                                                 } else {
-                                                    // Typing is complete, now wait 8 seconds before transitioning back
+                                                    // Typing is complete, now wait 2 seconds before transitioning back
                                                     setTimeout(() => {
                                                         // Hide info screen
                                                         infoScreen.style.transition = defaultTransition;
@@ -300,7 +300,7 @@
                                                                 animateOutroFeatures();
                                                             }, 50);
                                                         }, 500);
-                                                    }, 8000);
+                                                    }, 2000);
                                                 }
                                             };
                                             typeNextChar();
@@ -357,11 +357,11 @@
                                             // Animate features one by one
                                             animateOutroFeatures();
                                         }, 50);
-                                    }, 800);
-                                }, 3000); // Wait 3 seconds after conversation ends
+                                    }, 300);
+                                }, 2000); // Wait 2 seconds after conversation ends
                             });
-                        }, 500);
-                    }, 500);
+                        }, 300);
+                    }, 300);
                 }, 800);
             }, 2000);
             
@@ -446,7 +446,7 @@
                                         // Wait a moment before showing next bubble
                                         setTimeout(() => {
                                             animateBubble(index + 1);
-                                        }, 700);
+                                        }, 300);
                                     }
                                 };
                                 
@@ -456,7 +456,7 @@
                             // No text to type, move to the next bubble
                             setTimeout(() => {
                                 animateBubble(index + 1);
-                            }, 700);
+                            }, 300);
                         }
                     }, 500);
                 };
