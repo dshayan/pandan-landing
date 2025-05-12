@@ -179,8 +179,8 @@
                             <button id="info-button" class="border border-primary/70 text-primary text-sm font-bold py-2.5 px-5 rounded-full transition-all duration-300 min-w-[160px]">
                                 اطلاعات بیشتر
                             </button>
-                            <a href="https://t.me/PandanIRBot" class="bg-primary text-white text-sm font-bold py-2.5 px-5 rounded-full shadow-md transition-all duration-300 min-w-[160px] text-center">
-                                پیام به پندان در تلگرام
+                            <a href="javascript:void(0)" id="telegram-button" class="bg-primary text-white text-sm font-bold py-2.5 px-5 rounded-full shadow-md transition-all duration-300 min-w-[160px] text-center">
+                                پیام به پندان
                             </a>
                         </div>
                     </div>
@@ -188,11 +188,35 @@
                     <!-- Info Message Screen -->
                     <div class="absolute inset-0 bg-gray-50 flex flex-col p-3 z-40 hidden opacity-0" id="info-screen">
                         <div class="flex justify-center mb-4 mt-2">
-                            <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg">پ</div>
+                            <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md">پ</div>
                         </div>
-                        <div class="chat-bubble-container flex flex-col space-y-2 w-full">
-                            <div class="self-start max-w-[70%] rounded-3xl p-2 bg-blue-50 text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="info-bubble">
+                        <div class="chat-bubble-container flex flex-col space-y-2 w-full" dir="rtl">
+                            <div class="mr-auto ml-0 max-w-[70%] rounded-3xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="info-bubble">
                                 <div class="text-xs leading-relaxed whitespace-pre-line" id="info-text"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Screen -->
+                    <div class="absolute inset-0 bg-gray-50 flex flex-col p-3 z-40 hidden opacity-0" id="contact-screen">
+                        <div class="flex justify-center mb-4 mt-2">
+                            <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md">پ</div>
+                        </div>
+                        <div class="chat-bubble-container flex flex-col space-y-2 w-full flex-grow overflow-auto" dir="rtl">
+                            <div class="mr-auto ml-0 max-w-[90%] rounded-3xl p-3 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="contact-bubble">
+                                <div class="text-xs leading-relaxed whitespace-pre-line" id="contact-text"></div>
+                            </div>
+                            <!-- User message will be added here dynamically -->
+                        </div>
+                        <div class="mt-auto pb-2 pt-1 transform translate-y-8 opacity-0" id="message-bar">
+                            <div class="flex items-center bg-white rounded-full shadow-sm border border-gray-200 overflow-hidden" dir="ltr">
+                                <input type="text" placeholder="ایمیل، شماره یا آی‌دی تلگرام..." class="py-2 px-4 text-xs flex-grow outline-none text-left" id="contact-input">
+                                <button class="bg-primary text-white rounded-full p-1.5 m-1" id="send-contact-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -239,7 +263,7 @@
                             // Start typing the info text
                             setTimeout(() => {
                                 const infoBubble = document.getElementById('info-bubble');
-                                const infoLogo = document.querySelector('#info-screen .w-10.h-10');
+                                const infoLogo = document.querySelector('#info-screen .w-6.h-6');
                                 
                                 // Animate logo first
                                 infoLogo.style.opacity = '0';
@@ -275,7 +299,7 @@
                                                         infoBubble.style.opacity = '0';
                                                         infoBubble.style.transform = 'translateY(8px)';
                                                         
-                                                        const infoLogo = document.querySelector('#info-screen .w-10.h-10');
+                                                        const infoLogo = document.querySelector('#info-screen .w-6.h-6');
                                                         if (infoLogo) {
                                                             infoLogo.style.opacity = '0';
                                                         }
@@ -305,6 +329,233 @@
                         }, 50);
                     }, 500);
                 });
+            }
+            
+            // Contact screen functionality
+            const telegramButton = document.getElementById('telegram-button');
+            if (telegramButton) {
+                telegramButton.addEventListener('click', () => {
+                    // Hide outro screen
+                    outroScreen.style.transition = defaultTransition;
+                    outroScreen.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        outroScreen.style.display = 'none';
+                        
+                        // Show contact screen
+                        const contactScreen = document.getElementById('contact-screen');
+                        contactScreen.style.display = 'flex';
+                        const contactTextElement = document.getElementById('contact-text');
+                        contactTextElement.textContent = ''; // Clear text
+                        
+                        setTimeout(() => {
+                            contactScreen.style.transition = defaultTransition;
+                            contactScreen.style.opacity = '1';
+                            
+                            // Start animating contact message
+                            setTimeout(() => {
+                                const contactBubble = document.getElementById('contact-bubble');
+                                const contactLogo = document.querySelector('#contact-screen .w-6.h-6');
+                                
+                                // Animate logo first
+                                contactLogo.style.opacity = '0';
+                                contactLogo.style.transition = defaultTransition;
+                                setTimeout(() => {
+                                    contactLogo.style.opacity = '1';
+                                    
+                                    // Then animate the bubble
+                                    setTimeout(() => {
+                                        contactBubble.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                                        contactBubble.style.opacity = '1';
+                                        contactBubble.style.transform = 'translateY(0)';
+                                        
+                                        const contactText = 'پندان یکم دیگه آماده می‌شه. آی‌دی تلگرام، شماره یا ایمیلت رو برامون بنویس. هر موقع آماده شد بهت خبر می‌دیم. کلّی هم خوشحالم می‌شیم ☺️‌';
+                                        
+                                        setTimeout(() => {
+                                            let i = 0;
+                                            const typeNextChar = () => {
+                                                if (i < contactText.length) {
+                                                    contactTextElement.textContent += contactText.charAt(i);
+                                                    i++;
+                                                    // Add slight randomness to typing speed for more natural feel
+                                                    const randomDelay = Math.floor(Math.random() * 5) + 7; // 7-12ms (2x faster)
+                                                    requestAnimationFrame(() => {
+                                                        setTimeout(typeNextChar, randomDelay);
+                                                    });
+                                                } else {
+                                                    // Show message bar after text is typed
+                                                    setTimeout(() => {
+                                                        const messageBar = document.getElementById('message-bar');
+                                                        messageBar.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                                                        messageBar.style.opacity = '1';
+                                                        messageBar.style.transform = 'translateY(0)';
+                                                        
+                                                        // Setup send button functionality
+                                                        setupContactForm();
+                                                    }, 300);
+                                                }
+                                            };
+                                            typeNextChar();
+                                        }, 300);
+                                    }, 300);
+                                }, 100);
+                            }, 300);
+                        }, 50);
+                    }, 500);
+                });
+            }
+            
+            // Setup contact form submission
+            function setupContactForm() {
+                const sendButton = document.getElementById('send-contact-btn');
+                const contactInput = document.getElementById('contact-input');
+                const submissionMessage = document.getElementById('submission-message');
+                
+                // Google Apps Script Web App URL - Replace with your actual deployed web app URL
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbyuSHyvOe6syEfcojRkUrdY1zE-QIsjCV1t6MOgFya8nfXm3hfWc-3DyhM2F6em1vbf/exec';
+                
+                if (sendButton && contactInput) {
+                    // Initially disable send button
+                    sendButton.disabled = true;
+                    sendButton.classList.add('opacity-50');
+                    
+                    // Enable/disable button based on input
+                    contactInput.addEventListener('input', function() {
+                        const isEmpty = this.value.trim() === '';
+                        sendButton.disabled = isEmpty;
+                        if (isEmpty) {
+                            sendButton.classList.add('opacity-50');
+                        } else {
+                            sendButton.classList.remove('opacity-50');
+                        }
+                    });
+                    
+                    // Submit on button click
+                    sendButton.addEventListener('click', handleSubmit);
+                    
+                    // Submit on Enter key
+                    contactInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter' && !sendButton.disabled) {
+                            handleSubmit(e);
+                        }
+                    });
+                    
+                    function handleSubmit(e) {
+                        e.preventDefault();
+                        const contactValue = contactInput.value.trim();
+                        
+                        // Add user message to chat
+                        addMessageBubble(contactValue, 'user');
+                        
+                        // Disable input and button during submission
+                        contactInput.disabled = true;
+                        sendButton.disabled = true;
+                        sendButton.classList.add('opacity-50');
+                        
+                        // Show 'sending' message
+                        addMessageBubble('...', 'system');
+                        
+                        // Get timestamp
+                        const timestamp = new Date().toISOString();
+                        
+                        // Send data to Google Sheet
+                        fetch(scriptURL, {
+                            method: 'POST',
+                            mode: 'no-cors', // Important for cross-origin requests
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ 
+                                timestamp: timestamp,
+                                contact: contactValue 
+                            })
+                        })
+                        .then(() => {
+                            // Success handling
+                            contactInput.value = '';
+                            
+                            // Remove sending message and add success message
+                            removeLastSystemMessage();
+                            addMessageBubble('اگه اطلاعات تماست رو درست نوشته باشی، زود باهات تماس می‌گیریم.', 'system');
+                            
+                            // Re-enable input and button
+                            setTimeout(() => {
+                                contactInput.disabled = false;
+                                // Check if input is empty before enabling the button
+                                sendButton.disabled = contactInput.value.trim() === '';
+                                sendButton.classList.toggle('opacity-50', sendButton.disabled);
+                            }, 3000);
+                        })
+                        .catch(error => {
+                            console.error('Error!', error.message);
+                            
+                            // Remove sending message and add error message
+                            removeLastSystemMessage();
+                            addMessageBubble('نشد. لطفن دوباره بفرست.', 'system', 'text-red-500');
+                            
+                            // Re-enable input and button
+                            contactInput.disabled = false;
+                            // Check if input is empty before enabling the button
+                            sendButton.disabled = contactInput.value.trim() === '';
+                            sendButton.classList.toggle('opacity-50', sendButton.disabled);
+                        });
+                    }
+                    
+                    // Add message bubble to chat
+                    function addMessageBubble(message, type, colorClass) {
+                        const bubbleContainer = document.querySelector('#contact-screen .chat-bubble-container');
+                        const newBubble = document.createElement('div');
+                        
+                        if (type === 'user') {
+                            // For user messages (right side)
+                            newBubble.style.marginLeft = 'auto';
+                            newBubble.style.marginRight = '0';
+                            newBubble.className = 'max-w-[70%] rounded-3xl p-2 bg-userbg text-blue-900 shadow-sm transform opacity-0';
+                        } else if (type === 'system') {
+                            // For system messages (left side)
+                            newBubble.style.marginRight = 'auto';
+                            newBubble.style.marginLeft = '0';
+                            newBubble.className = 'max-w-[70%] rounded-3xl p-2 bg-botbg text-blue-900 shadow-sm transform opacity-0';
+                            if (colorClass) {
+                                newBubble.classList.add(colorClass);
+                            }
+                            newBubble.dataset.type = 'system'; // For identifying system messages later
+                        }
+                        
+                        const textDiv = document.createElement('div');
+                        textDiv.className = 'text-xs leading-relaxed';
+                        textDiv.textContent = message;
+                        
+                        newBubble.appendChild(textDiv);
+                        bubbleContainer.appendChild(newBubble);
+                        
+                        // Scroll to bottom
+                        bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
+                        
+                        // Animate the bubble
+                        setTimeout(() => {
+                            newBubble.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            newBubble.style.opacity = '1';
+                            newBubble.style.transform = 'translateY(0)';
+                        }, 10);
+                    }
+                    
+                    // Remove the last system message (used to replace "sending" with result)
+                    function removeLastSystemMessage() {
+                        const systemMessages = document.querySelectorAll('#contact-screen .chat-bubble-container [data-type="system"]');
+                        if (systemMessages.length > 0) {
+                            const lastSystemMessage = systemMessages[systemMessages.length - 1];
+                            lastSystemMessage.remove();
+                        }
+                    }
+                    
+                    // Legacy function kept for compatibility
+                    function showFeedbackMessage(message, colorClass) {
+                        submissionMessage.textContent = message;
+                        submissionMessage.className = 'text-xs text-center mt-2 ' + colorClass;
+                        submissionMessage.classList.remove('hidden');
+                    }
+                }
             }
             
             // Show logo for 2 seconds then fade out
