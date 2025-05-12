@@ -156,7 +156,7 @@
 
                             <div class="self-end max-w-[80%] rounded-2xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-5">
                                 <div class="text-xs leading-relaxed">
-                                    <p>می‌تونی این سؤال رو برای متخصص کامپیوتر بفرستی. من خلاصه‌ی ماجرا رو به‌طور ناشناس بهش می‌گم.</p>
+                                    <p>می‌تونی این سؤال رو برای متخصص کامپیوتر بفرستی. من خلاصه‌ی موضوع رو به‌طور ناشناس بهش می‌گم.</p>
                                     
                                     <div class="mt-3 bg-primary text-white px-3 py-1.5 rounded-full text-center text-sm font-bold min-w-[140px] opacity-0 transition-opacity duration-300 absolute transform scale-0 origin-top" id="send-button">
                                         بفرست برای متخصص
@@ -245,7 +245,7 @@
                 
                 infoButton.addEventListener('click', () => {
                     // Hide outro screen
-                    outroScreen.style.transition = defaultTransition;
+                    outroScreen.style.transition = 'opacity 0.3s ease';
                     outroScreen.style.opacity = '0';
                     
                     setTimeout(() => {
@@ -257,7 +257,7 @@
                         infoTextElement.textContent = ''; // Clear text
                         
                         setTimeout(() => {
-                            infoScreen.style.transition = defaultTransition;
+                            infoScreen.style.transition = 'opacity 0.3s ease';
                             infoScreen.style.opacity = '1';
                             
                             // Start typing the info text
@@ -267,7 +267,7 @@
                                 
                                 // Animate logo first
                                 infoLogo.style.opacity = '0';
-                                infoLogo.style.transition = defaultTransition;
+                                infoLogo.style.transition = 'opacity 0.3s ease';
                                 setTimeout(() => {
                                     infoLogo.style.opacity = '1';
                                     
@@ -336,7 +336,7 @@
             if (telegramButton) {
                 telegramButton.addEventListener('click', () => {
                     // Hide outro screen
-                    outroScreen.style.transition = defaultTransition;
+                    outroScreen.style.transition = 'opacity 0.3s ease';
                     outroScreen.style.opacity = '0';
                     
                     setTimeout(() => {
@@ -349,7 +349,7 @@
                         contactTextElement.textContent = ''; // Clear text
                         
                         setTimeout(() => {
-                            contactScreen.style.transition = defaultTransition;
+                            contactScreen.style.transition = 'opacity 0.3s ease';
                             contactScreen.style.opacity = '1';
                             
                             // Start animating contact message
@@ -359,7 +359,7 @@
                                 
                                 // Animate logo first
                                 contactLogo.style.opacity = '0';
-                                contactLogo.style.transition = defaultTransition;
+                                contactLogo.style.transition = 'opacity 0.3s ease';
                                 setTimeout(() => {
                                     contactLogo.style.opacity = '1';
                                     
@@ -560,13 +560,13 @@
             
             // Show logo for 2 seconds then fade out
             setTimeout(() => {
-                logoIntro.style.transition = defaultTransition;
+                logoIntro.style.transition = 'opacity 0.3s ease';
                 logoIntro.style.opacity = '0';
                 
                 // After logo fades out, show chat screen and start conversation
                 setTimeout(() => {
                     logoIntro.style.display = 'none';
-                    chatScreen.style.transition = defaultTransition;
+                    chatScreen.style.transition = 'opacity 0.3s ease';
                     chatScreen.style.opacity = '1';
                     
                     // Start the conversation animation
@@ -591,7 +591,7 @@
                                     setTimeout(() => {
                                         chatScreen.style.display = 'none';
                                         outroScreen.style.display = 'flex';
-                                        outroScreen.style.transition = defaultTransition;
+                                        outroScreen.style.transition = 'opacity 0.3s ease';
                                         setTimeout(() => {
                                             outroScreen.style.opacity = '1';
                                             
@@ -603,7 +603,7 @@
                             });
                         }, 300);
                     }, 300);
-                }, 800);
+                }, 300);
             }, 2000);
             
             // Function to animate outro features one by one
