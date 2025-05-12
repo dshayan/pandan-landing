@@ -289,7 +289,7 @@
                                                         setTimeout(typeNextChar, randomDelay);
                                                     });
                                                 } else {
-                                                    // Typing is complete, now wait 2 seconds before transitioning back
+                                                    // Typing is complete, now wait 3 seconds before transitioning back
                                                     setTimeout(() => {
                                                         // Hide info screen
                                                         infoScreen.style.transition = defaultTransition;
@@ -318,7 +318,7 @@
                                                                 animateOutroFeatures();
                                                             }, 50);
                                                         }, 500);
-                                                    }, 2000);
+                                                    }, 3000);
                                                 }
                                             };
                                             typeNextChar();
@@ -409,7 +409,6 @@
             function setupContactForm() {
                 const sendButton = document.getElementById('send-contact-btn');
                 const contactInput = document.getElementById('contact-input');
-                const submissionMessage = document.getElementById('submission-message');
                 
                 // Google Apps Script Web App URL - Replace with your actual deployed web app URL
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbyuSHyvOe6syEfcojRkUrdY1zE-QIsjCV1t6MOgFya8nfXm3hfWc-3DyhM2F6em1vbf/exec';
@@ -547,13 +546,6 @@
                             const lastSystemMessage = systemMessages[systemMessages.length - 1];
                             lastSystemMessage.remove();
                         }
-                    }
-                    
-                    // Legacy function kept for compatibility
-                    function showFeedbackMessage(message, colorClass) {
-                        submissionMessage.textContent = message;
-                        submissionMessage.className = 'text-xs text-center mt-2 ' + colorClass;
-                        submissionMessage.classList.remove('hidden');
                     }
                 }
             }
