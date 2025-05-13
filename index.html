@@ -124,11 +124,11 @@
                     </div>
 
                     <!-- Chat Screen -->
-                    <div class="h-full w-full bg-gray-50 relative p-3 overflow-auto opacity-0" id="chat-screen">
+                    <div class="h-full w-full bg-gray-50 relative p-3 overflow-hidden opacity-0" id="chat-screen">
                         <div class="flex justify-center items-center mb-4 mt-2">
                             <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md opacity-0 transition-opacity duration-500" id="chat-logo">پ</div>
                         </div>
-                        <div class="chat-bubble-container flex flex-col space-y-2 h-full w-full pb-1">
+                        <div class="chat-bubble-container flex flex-col space-y-2 h-[calc(100%-3rem)] w-full pb-1 overflow-hidden">
                             <!-- Chat Bubbles with sequential appearance -->
                             <div class="self-start max-w-[60%] rounded-3xl p-2 bg-userbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="bubble-1">
                                 <div class="text-xs leading-relaxed">
@@ -190,7 +190,7 @@
                         <div class="flex justify-center mb-4 mt-2">
                             <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md">پ</div>
                         </div>
-                        <div class="chat-bubble-container flex flex-col space-y-2 w-full" dir="rtl">
+                        <div class="chat-bubble-container flex flex-col space-y-2 w-full overflow-hidden" dir="rtl">
                             <div class="mr-auto ml-0 max-w-[70%] rounded-3xl p-2 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="info-bubble">
                                 <div class="text-xs leading-relaxed whitespace-pre-line" id="info-text"></div>
                             </div>
@@ -202,7 +202,7 @@
                         <div class="flex justify-center mb-4 mt-2">
                             <div class="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md">پ</div>
                         </div>
-                        <div class="chat-bubble-container flex flex-col space-y-2 w-full flex-grow overflow-auto" dir="rtl">
+                        <div class="chat-bubble-container flex flex-col space-y-2 w-full flex-grow overflow-hidden" dir="rtl">
                             <div class="mr-auto ml-0 max-w-[90%] rounded-3xl p-3 bg-botbg text-blue-900 shadow-sm transform translate-y-8 opacity-0" id="contact-bubble">
                                 <div class="text-xs leading-relaxed whitespace-pre-line" id="contact-text"></div>
                             </div>
@@ -503,6 +503,14 @@
                     // Add message bubble to chat
                     function addMessageBubble(message, type, colorClass) {
                         const bubbleContainer = document.querySelector('#contact-screen .chat-bubble-container');
+                        
+                        // Limit the number of messages by removing older ones if needed
+                        const existingMessages = bubbleContainer.querySelectorAll('[data-type="system"], div.max-w-\\[70\\%\\]');
+                        if (existingMessages.length > 3) {
+                            // Remove oldest messages to keep only latest ones
+                            existingMessages[0].remove();
+                        }
+                        
                         const newBubble = document.createElement('div');
                         
                         if (type === 'user') {
@@ -528,8 +536,7 @@
                         newBubble.appendChild(textDiv);
                         bubbleContainer.appendChild(newBubble);
                         
-                        // Scroll to bottom
-                        bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
+                        // Remove scroll to bottom since we're using overflow-hidden
                         
                         // Animate the bubble
                         setTimeout(() => {
